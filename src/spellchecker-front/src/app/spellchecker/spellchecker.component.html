@@ -1,0 +1,43 @@
+<br>
+<div class="container">
+  <mat-card >
+    <mat-card-title>Corregir una oración</mat-card-title>
+    <mat-card-content>
+      <form>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Ingresa la oración</mat-label>
+          <textarea matInput placeholder="un lgar paa la hopinion" [formControl]="text" required>{{text.value}}</textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="spellcheck()">Corregir</button>
+      <button mat-raised-button color="accent" (click)="requestHistory(); showHistory =!showHistory ">Ver historial de requests</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+  <div *ngIf="showSpinner" class="center">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <br>
+  <div *ngIf="showHistory">
+    <div *ngFor="let request of history" style="padding-bottom: 10px;">
+      <mat-card>
+        <mat-card-title>
+         <strong>Request ID:</strong> {{ request.request_id}}
+        </mat-card-title>
+        <mat-card-subtitle><strong>Fecha realizada:</strong> {{request.request_date}}</mat-card-subtitle>
+        <mat-card-content>
+          <p>
+            <strong>Texto ingresado:</strong> {{request.request_text}}
+          </p>
+          <p>
+            <strong>Correción:</strong> {{request.request_response}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
