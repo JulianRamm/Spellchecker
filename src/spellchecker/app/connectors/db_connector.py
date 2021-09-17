@@ -88,3 +88,4 @@ def get_all_rows_from_request_registry():
         if connection:
             connection.close()
             print("The SQLite connection is closed")
+

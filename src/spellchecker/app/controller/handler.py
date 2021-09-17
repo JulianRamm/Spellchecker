@@ -1,14 +1,16 @@
 import json
 
-from spell_checker import spell_check_sentence
-import db_connector
+from app.spellchecker import SpellChecker
+from app.connectors import db_connector
 import datetime
 import pytz
+
+instance = SpellChecker()
 
 
 def spell_check(event, context):
     request_text = json.loads(event.get("body"))["text"]
-    request_response = spell_check_sentence(request_text)
+    request_response = instance.spell_check_sentence(request_text)
     request_id = event.get("requestContext").get("requestId")
     request_date = datetime.datetime.fromtimestamp(float(event.get("requestContext").get("requestTimeEpoch") / 1000),
                                                    pytz.timezone("America/Bogota"))
