@@ -1,5 +1,4 @@
 import json
-
 from app.spellchecker import SpellChecker
 from app.connectors import db_connector
 import datetime
